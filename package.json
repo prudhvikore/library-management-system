@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watchAll",
     "start": "nodemon ./dist/src/server.js",
-    "tsc": "npx tsc --watch",
+    "tsc": "npx tsc",
     "lint": "eslint . --ext .ts"
   },
   "author": "",

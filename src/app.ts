@@ -12,8 +12,10 @@ import "dotenv/config";
 import { v4 as uuid } from "uuid";
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     export interface Request {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- bunyan Logger type has complex export structure
       logger: any;
     }
   }
@@ -32,7 +34,11 @@ app.use(
 );
 
 app.use((req, res, next: NextFunction) => {
-  req.logger = bunyan.createLogger({ name: "goodreads", req_id: uuid() , streams: [{path: "./src/logs/apiLogger.log"}]});
+  req.logger = bunyan.createLogger({
+    name: "goodreads",
+    req_id: uuid(),
+    streams: [{ path: "./src/logs/apiLogger.log" }],
+  });
   next();
 });
 

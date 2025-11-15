@@ -1,6 +1,6 @@
 import { Request } from "express";
 import bcrypt from "bcrypt";
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 import userQueries from "../../queries/user_query/user_queries";
 import Custom_error from "../../utils/errors/custom_errors";
 import status_codes from "../../utils/errors/status_codes";
@@ -26,7 +26,14 @@ async function verify_login_service(req: Request) {
         username: username,
         role: get_user.role,
       };
-      const jwtToken = jwt.sign(payload, process.env.SECRET);
+      const secret = process.env.SECRET;
+      if (!secret) {
+        throw new Custom_error(
+          "JWT secret not configured",
+          status_codes.INTERNAL_ERROR
+        );
+      }
+      const jwtToken = jwt.sign(payload, secret);
       req.logger.info("verification successful and returned jwtToken");
       return jwtToken;
     } else {

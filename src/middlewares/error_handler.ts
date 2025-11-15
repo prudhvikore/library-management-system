@@ -5,7 +5,7 @@ async function error_handler(
   error: custom_error,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) {
   if (error) {
     if (!error.message) {

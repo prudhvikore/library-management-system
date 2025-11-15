@@ -1,21 +1,20 @@
-import path from "path"
+import path from "path";
 
-const BASE_PATH = path.join(__dirname, 'src', 'config')
+const BASE_PATH = path.join(__dirname, "src", "config");
 
 // Update with your config settings.
 
-const config= {
+const config = {
   development: {
     client: "pg",
-    connection:"postgres://prudhviraj-kore:12345@localhost:5432/goodreads",
+    connection: "postgres://prudhviraj-kore:12345@localhost:5432/goodreads",
     migrations: {
-      directory: path.join(BASE_PATH, 'migrations'),
+      directory: path.join(BASE_PATH, "migrations"),
     },
     seeds: {
-      directory: path.join(BASE_PATH, 'seeds'),
+      directory: path.join(BASE_PATH, "seeds"),
     },
-  }
-
+  },
 };
 
-module.exports = config;
+export = config;
